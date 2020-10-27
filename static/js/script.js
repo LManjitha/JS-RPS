@@ -24,7 +24,38 @@ function generateCat(){
 
 function rps(yourChoice){
     var  humanChoice,botChoice;
-    //results = deciedWinner(humanChoice,botChoice);
+    humanChoice = yourChoice.id;
+    botChoice = numberToChoice(randToRpsInt());
+    // console.log(botChoice);
+    results = decideWinner(humanChoice,botChoice);
+    console.log('computer choice :',botChoice);
+    console.log(results);
     //message = finalMessage(results);
     //rpsFrontend(yourChoice,botChoice,meesage);
 }
+
+function randToRpsInt(){
+    return Math.floor(Math.random()*3);
+}
+
+function numberToChoice(number){
+    return ['rock','paper','scissor'][number];
+}
+
+function decideWinner(yourChoice,computerChoice){
+    var rpsDatabase={
+        'rock': {'scissor':1,'rock':0.5,'paper':0},
+        'paper':{'rock':1,'paper':0.5,'scissor':0},
+        'scissor':{'paper':1,'scissor':0.5,'rock':0}
+    }
+
+    var yourScore = rpsDatabase[yourChoice][computerChoice];
+    var computerScore = rpsDatabase[computerChoice][yourChoice];
+
+    return [yourScore,computerScore];
+}
+
+function finalMessage([yourScore,computerScore]){
+    
+}
+
