@@ -91,3 +91,52 @@ function rpsFrontend(yourChoice,botChoice,message){
     document.getElementById('flex-box-rps-div').appendChild(botDiv);
    
 }
+
+var all_buttons = document.getElementsByTagName('button');
+
+var copyAllButtons = [];
+for (let i=0;i<all_buttons.length;i++){
+    copyAllButtons.push(all_buttons[i].classList[1]);
+}
+
+function buttonColorChange(btnClr){
+    if(btnClr.value === 'red'){
+        buttonRed();
+    }else if(btnClr.value === 'green'){
+        buttonGreen();
+    }else if(btnClr.value === 'reset'){
+        buttonReset();
+    }else if(btnClr.value === 'random'){
+        buttonRandom();
+    }
+}
+//console.log(all_buttons[2].classList[1]);
+function buttonRed(){
+    for(let i=0;i<all_buttons.length;i++){
+        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+        all_buttons[i].classList.add('btn-danger');
+    }
+}
+
+function buttonGreen(){
+    for(let i=0;i<all_buttons.length;i++){
+        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+        all_buttons[i].classList.add('btn-success');
+    }
+}
+
+function buttonReset(){
+    for(let i=0;i<all_buttons.length;i++){
+        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+        all_buttons[i].classList.add(copyAllButtons[i]);
+    }
+}
+
+function buttonRandom(){
+    var choices = ['btn-primary','btn-danger','btn-success','btn-warning'];
+    for(let i=0;i<all_buttons.length;i++){
+        all_buttons[i].classList.remove(all_buttons[i].classList[1]);
+        all_buttons[i].classList.add(choices[Math.floor(Math.random() * 4)]);
+    }
+}
+
